@@ -1,5 +1,4 @@
-#Set the working directory
-setwd("C:/Users/saneppal/Source/Repos/ExData_Plotting1")
+
 #Download the file to current directory
 file<-"./household_power_consumption.zip"
 if(!file.exists(file))
@@ -16,10 +15,12 @@ data_sub<-data[(data$Date=="1/2/2007"|data$Date=="2/2/2007"),]
 #Create a datetime column combining the 'Date' and 'Time' columns
 consumption<-cbind(data_sub,Datetime=strptime(paste(data_sub$Date,data_sub$Time), "%d/%m/%Y %H:%M:%S"))
 
+#Incase this was set
+par(mfcol=c(1,1))
 
 #Create a histogram using the base plotting system
 ## Create and annotate the plot to screen device
-plot(consumption$Datetime,as.numeric(consumption$Global_active_power),xlab="",ylab="Global Active Power (kilowatts)",type="l")
+plot(consumption$Datetime,as.numeric(consumption$Global_active_power),xlab="",ylab="Global Active Power (kilowatts)",type="l",family="sans",ps=12)
 ##Copy the plot to png file
 dev.copy(png, file="plot2.png", width=480, height=480)
 ## Turn off the device
